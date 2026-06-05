@@ -3,98 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GDurell Works | Technical Art & VFX</title>
+    <title>GDurell Works | Technical Art Studio</title>
+    <link rel="icon" type="image/png" href="Resources/GDurellicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            /* Colores basados en el logo */
+            --bg-color: #000c29;
+            --surface-color: #13304a;
+            --text-main: #f5f5f5;
+            --text-muted: #aab8c2;
+            --accent-color: #ff9100;
+            --accent-hover: #ffaa33;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .container {
-            max-width: 600px;
-            background-color: #1e1e1e;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            text-align: center;
-        }
-        h1 {
-            color: #ffffff;
-            margin-bottom: 5px;
-            font-size: 2.5em;
-        }
-        h2 {
-            color: #00d2ff;
-            font-weight: 400;
-            margin-top: 0;
-            font-size: 1.2em;
-            margin-bottom: 25px;
-        }
-        p {
             line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 100px 0 80px 0;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: -1px;
+            color: var(--accent-color);
+        }
+
+        .hero h2 {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: var(--text-muted);
+            margin-top: 10px;
             margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            color: var(--text-main);
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            font-weight: 300;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 14px 32px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
             font-size: 1.05em;
         }
-        .contact-btn {
-            display: inline-block;
-            background-color: #00d2ff;
-            color: #121212;
-            padding: 12px 24px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            margin-bottom: 30px;
+
+        .btn:hover {
+            background-color: var(--accent-hover);
         }
-        .contact-btn:hover {
-            background-color: #00a8cc;
-        }
+
+        /* --- Social Links --- */
         .social-links {
+            margin-top: 40px;
             display: flex;
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
         }
+
         .social-links a {
-            color: #b3b3b3;
+            color: var(--text-muted);
             text-decoration: none;
-            border: 1px solid #333;
-            padding: 8px 15px;
+            border: 1px solid var(--surface-color);
+            background-color: var(--surface-color);
+            padding: 8px 16px;
             border-radius: 20px;
             font-size: 0.9em;
-            transition: all 0.3s;
+            transition: all 0.2s ease;
         }
+
         .social-links a:hover {
-            border-color: #00d2ff;
-            color: #00d2ff;
+            border-color: var(--text-muted);
+            color: var(--text-main);
+        }
+
+        /* --- Projects Section --- */
+        .projects {
+            padding: 40px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 60px;
+            color: var(--accent-color);
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 80px; /* Espacio vertical entre proyectos */
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-media {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-bottom: 24px;
+            border: 1px dashed #3f424a; /* Borde punteado para indicar que es un placeholder */
+        }
+
+        .project-info h3 {
+            font-size: 1.8em;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            color: var(--accent-color);
+        }
+
+        .project-info p {
+            font-size: 1.05em;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 300;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 80px 0 40px 0;
+            border-top: 1px solid var(--surface-color);
+            margin-top: 40px;
+        }
+
+        .footer .contact-wrapper {
+            margin-bottom: 40px;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>GDurell Works</h1>
-        <h2>Gonzalo Martin Andurell | Technical Artist</h2>
-        
-        <p>Specialized in Technical Art, Unity (URP/HDRP), and advanced Shaders/VFX design. Focused on delivering high-quality, performance-optimized tools and assets for game developers.</p>
-        
-        <a href="mailto:gdurellworks@gmail.com" class="contact-btn">Contact Me</a>
-        
-        <div class="social-links">
-            <a href="https://assetstore.unity.com/publishers/TU_ID" target="_blank">Unity Asset Store</a>
-            <a href="https://youtube.com/@gdurellworks?si=XpWp77g4RHCfZHRo" target="_blank">YouTube</a>
-            <a href="https://twitter.com/TU_USUARIO" target="_blank">X (Twitter)</a>
-            <a href="https://github.com/TU_USUARIO" target="_blank">GitHub</a>
-            <a href="https://linkedin.com/in/TU_USUARIO" target="_blank">LinkedIn</a>
-            <a href="https://instagram.com/TU_USUARIO" target="_blank">Instagram</a>
+    <header class="hero">
+        <div class="container">
+            <img src="Resources/BannerAplha.png" alt="GDurell Works" style="max-width: 100%; height: auto; max-height: 450px; margin-bottom: 20px;">
+            <h2>Technical Art Studio</h2>
+            
+            <p>We are a studio specialized in Technical Art, Unity (URP/HDRP), and advanced Shaders & VFX design. We focus on delivering high-quality, performance-optimized tools and assets for game developers.</p>
+            
+            <a href="mailto:gdurellworks@gmail.com" class="btn">Contact Us</a>
+            
+            <div class="social-links">
+                <a href="https://assetstore.unity.com/publishers/YOUR_PUBLISHER_ID" target="_blank">Unity Asset Store</a>
+                <a href="https://youtube.com/@gdurellworks?si=0yesxOeN-GlVpBZg" target="_blank">YouTube</a>
+                <a href="https://x.com/gdurellworks" target="_blank">X (Twitter)</a>
+                <a href="https://instagram.com/gdurellworks" target="_blank">Instagram</a>
+            </div>
         </div>
-    </div>
+    </header>
+
+    <section class="projects">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <div class="project-list">
+                
+                <!-- Project 1: Stylized Interactive Grass Kit -->
+                <article class="project-card">
+                    <div class="project-media" style="padding: 0; background-color: transparent; border: none;">
+                        <video width="100%" style="border-radius: 12px; aspect-ratio: 16/9; object-fit: cover; pointer-events: none;" autoplay loop muted playsinline>
+                            <source src="Resources/Stylized_Interact_Grass_Video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-info">
+                        <h3>Stylized Interactive Grass Kit (URP)</h3>
+                        <p>A highly optimized, "Plug & Play" stylized grass system for URP. Instantly add wind simulation and physics-free player interaction to your environments, perfectly suited for PC and Mobile.</p>
+                    </div>
+                </article>
+
+                <!-- Project 2: Stylized Dissolve FX -->
+                <article class="project-card">
+                    <div class="project-media" style="padding: 0; background-color: transparent; border: none;">
+                        <video width="100%" style="border-radius: 12px; aspect-ratio: 16/9; object-fit: cover; pointer-events: none;" autoplay loop muted playsinline>
+                            <source src="Resources/Stylized_Dissolve_FX_Video.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="project-info">
+                        <h3>Stylized Dissolve FX (URP)</h3>
+                        <p>Flexible, high-performance stylized dissolve effect to your custom models. Whether you need a weapon to turn into ash, a chest to materialize, or an enemy to melt in acid, this shader provides a lightweight, mobile-friendly solution that integrates easily into your production workflow.</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="contact-wrapper">
+                <p style="margin-bottom: 20px; font-size: 1.1em; color: var(--text-main);">Interested in working with us?</p>
+                <a href="mailto:gdurellworks@gmail.com" class="btn">Contact Us</a>
+            </div>
+            <p>&copy; 2024 GDurell Works. All rights reserved.</p>
+        </div>
+    </footer>
 
 </body>
 </html>
