@@ -171,7 +171,13 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .project-media:hover {
+        .project-media.playing {
+            transform: none !important;
+            box-shadow: none !important;
+            cursor: default;
+        }
+
+        .project-media:hover:not(.playing) {
             transform: translateY(-4px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
@@ -218,59 +224,7 @@
             border-left-color: #fff;
         }
 
-        /* --- Modal (Lightbox) --- */
-        .video-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
 
-        .video-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-
-        .modal-content {
-            position: relative;
-            width: 90%;
-            max-width: 1000px;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-
-        .modal-content iframe {
-            width: 100%;
-            height: 100%;
-            border-radius: 12px;
-            border: none;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: #fff;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.2s ease;
-        }
-
-        .close-modal:hover {
-            color: var(--accent-color);
-        }
 
         .project-card h3 {
             font-size: 1.8em;
@@ -402,60 +356,25 @@
         </div>
     </footer>
 
-    <!-- Video Modal -->
-    <div class="video-modal" id="videoModal">
-        <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
-            <div id="iframeContainer"></div>
-        </div>
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('videoModal');
-            const closeModal = document.getElementById('closeModal');
-            const iframeContainer = document.getElementById('iframeContainer');
             const mediaItems = document.querySelectorAll('.project-media');
 
-            // Open modal on click
             mediaItems.forEach(item => {
-                item.addEventListener('click', () => {
+                const clickHandler = () => {
                     const youtubeId = item.getAttribute('data-youtube-id');
                     if (youtubeId && youtubeId !== 'YOUR_YOUTUBE_ID_HERE') {
-                        // Create iframe dynamically
-                        iframeContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                        modal.classList.add('active');
-                        // Small timeout to allow display:flex to apply before setting opacity for smooth transition
-                        setTimeout(() => {
-                            modal.style.opacity = '1';
-                        }, 10);
+                        // Reproducir el video en su lugar (inline) reemplazando la imagen
+                        item.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; z-index: 10; border-radius: 12px;"></iframe>`;
+                        item.classList.add('playing');
+                        // Remover el evento para que los clics siguientes vayan directamente al video
+                        item.removeEventListener('click', clickHandler);
                     } else {
                         alert("Please configure a valid YouTube ID for this project.");
                     }
-                });
-            });
-
-            // Close modal function
-            const closeVideo = () => {
-                modal.style.opacity = '0';
-                setTimeout(() => {
-                    modal.classList.remove('active');
-                    iframeContainer.innerHTML = ''; // Stop video
-                }, 300); // Matches CSS transition duration
-            };
-
-            closeModal.addEventListener('click', closeVideo);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeVideo();
-                }
-            });
-            
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && modal.classList.contains('active')) {
-                    closeVideo();
-                }
+                };
+                
+                item.addEventListener('click', clickHandler);
             });
         });
     </script>
